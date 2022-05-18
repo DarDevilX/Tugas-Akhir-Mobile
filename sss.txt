@@ -1,0 +1,63 @@
+<script>
+        $("#login-form").submit(function (e) {
+        e.preventDefault();
+        let username = $('#username').val()
+        let password = $("#password").val()
+        console.log(username,password);
+        axios
+          .post("http://localhost:8000/api/auth", {
+            'username' : username,
+            'password' : password
+          })
+          .then(function (response) {            
+            let res = JSON.stringify(response.data)
+            let parsed = JSON.parse(res)
+            console.log(parsed);
+            if(parsed.loggedin == true){
+                switch (parsed.role) {
+                    case 'master':
+                    localStorage.setItem(
+                    'user-info',
+                    JSON.stringify({
+                        'username' : parsed.name,
+                        'role' : parsed.role
+                    }));
+                    window.location = "admin";       
+                        break;
+
+                    case 'petugas':
+                    let data = 
+                    localStorage.setItem(
+                    'user-info',
+                    JSON.stringify({
+                        'username' : parsed.name,
+                        'role' : parsed.role
+                    }));
+                    window.location = "petugas";
+
+                    case 'siswa':
+                    localStorage.setItem(
+                    'user-info',
+                    JSON.stringify({
+                        'username' : parsed.name,
+                        'nik' : parsed.nik,
+                        'role' : parsed.role
+                    }));
+                    window.location = "siswa";
+                
+                    default:
+                        break;
+                }                
+            }else{
+                Swal.fire({
+                    title: "Error!",
+                    html: "Invalid Username/Password",
+                    type: 'error'
+                })
+            }            
+          })
+          .catch(function (error) {
+            console.log(error);
+          });
+      });
+    </script>

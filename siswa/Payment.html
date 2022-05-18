@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no">
+    <title>APLIKASI PEMBAYARAN SPP ONLINE- Payment</title>
+    <link rel="icon" type="image/x-icon" href="assets/img/Logo smk 2.png"/>
+    <!-- BEGIN GLOBAL MANDATORY STYLES -->
+    <link href="https://fonts.googleapis.com/css?family=Quicksand:400,500,600,700&display=swap" rel="stylesheet">
+    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="assets/css/plugins.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <!-- END GLOBAL MANDATORY STYLES -->
+    
+    <!-- BEGIN PAGE LEVEL PLUGINS/CUSTOM STYLES -->
+
+    <style>
+        /*
+            The below code is for DEMO purpose --- Use it if you are using this demo otherwise Remove it
+        */
+        /*.navbar .navbar-item.navbar-dropdown {
+            margin-left: auto;
+        }*/
+        .layout-px-spacing {
+            min-height: calc(100vh - 184px)!important;
+        }
+
+    </style>
+
+    <!-- END PAGE LEVEL PLUGINS/CUSTOM STYLES -->
+    
+</head>
+<body class="sidebar-noneoverflow" onload="render()">
+    
+    <!--  BEGIN NAVBAR  -->
+    <div class="header-container">
+        <header class="header navbar navbar-expand-sm">
+
+            <a href="javascript:void(0);" class="sidebarCollapse" data-placement="bottom"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></a>
+
+            <div class="nav-logo align-self-center">
+                <a class="navbar-brand" href="index.html"><img alt="logo" src="assets/img/Logo smk 2.png"> <span class="navbar-brand-name">PEMBAYARAN SPP ONLINE</span></a>
+            </div>
+
+            <ul class="navbar-item flex-row nav-dropdowns ml-auto">
+                <li class="nav-item dropdown user-profile-dropdown order-lg-0 order-1">
+                    <a href="javascript:void(0);" class="nav-link dropdown-toggle user" id="user-profile-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <div class="media">
+                            <img src="assets/img/user ikon.png" class="img-fluid" alt="admin-profile">
+                            <div class="media-body align-self-center">
+                                <h6><span>Hi,</span> Alan</h6>
+                            </div>
+                        </div>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-down"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                    </a>
+                    <div class="dropdown-menu position-absolute animated fadeInUp" aria-labelledby="user-profile-dropdown">
+                        <div class="">
+                            <div class="dropdown-item">
+                                <a class="" href="logout.php" onclick="logout()"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-log-out"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg> Sign Out</a>
+                            </div>
+                        </div>
+                    </div>
+
+                </li>
+            </ul>
+        </header>
+    </div>
+    <!--  END NAVBAR  -->
+
+    <!--  BEGIN MAIN CONTAINER  -->
+    <div class="main-container" id="container">
+
+        <div class="overlay"></div>
+        <div class="search-overlay"></div>
+
+        <!--  BEGIN TOPBAR  -->
+        <div class="topbar-nav header navbar" role="banner">
+            <nav id="topbar">
+                <ul class="navbar-nav theme-brand flex-row  text-center">
+                    <li class="nav-item theme-logo">
+                        <a href="index.html">
+                            <img src="assets/img/90x90.jpg" class="navbar-logo" alt="logo">
+                        </a>
+                    </li>
+                    <li class="nav-item theme-text">
+                        <a href="index.html" class="nav-link"> CORK </a>
+                    </li>
+                </ul>
+
+                <ul class="list-unstyled menu-categories" id="topAccordion">
+
+                    <li class="menu single-menu">
+                        <a href="index.html" aria-expanded="false" class="dropdown-toggle autodroprown">
+                            <div class="">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-home"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+                                <span>Dashboard</span>
+                            </div>
+                        </a>
+                    </li>
+
+
+                    <li class="menu single-menu active">
+                        <a href="Payment.html" aria-expanded="false" class="dropdown-toggle autodroprown">
+                            <div class="">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus-circle"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="16"></line><line x1="8" y1="12" x2="16" y2="12"></line></svg>
+                                <span>Payment</span>
+                            </div>                            
+                        </a>                       
+                    </li>
+
+                    <li class="menu single-menu">
+                        <a href="History.html" aria-expanded="true" class="dropdown-toggle autodroprown">
+                            <div class="">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-box"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
+                                <span>History</span>
+                            </div>
+                        </a>                        
+                    </li>
+                </ul>
+            </nav>
+        </div>
+        <!--  END TOPBAR  -->
+        
+        <!--  BEGIN CONTENT AREA  -->
+        <div id="content" class="main-content">
+            <div class="layout-px-spacing">
+
+
+                <!-- CONTENT AREA -->
+                
+
+                <div class="row layout-top-spacing">
+                    
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-12 layout-spacing">
+                        <div class="widget-content-area br-4">
+                            <div class="widget-one">
+
+                                <h6 class="mb-3">Payment</h6>
+
+                                <form class="needs-validation" id="payment-form" novalidate action="javascript:void(0);">
+                                    <div class="form-row">
+                                        <div class="col-md-4 mb-5">
+                                            <label for="name">Name</label>
+                                            <input type="text" class="form-control" id="name" disabled>
+                                            <div class="valid-tooltip">
+                                                Looks good!
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 mb-5">
+                                            <label for="nik">Student NIS</label>
+                                            <input type="text" class="form-control" id="nik" value="Park" disabled>
+                                            <div class="valid-tooltip">
+                                                Looks good!
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 mb-5">
+                                            <label for="Date">Date</label>                                                     
+                                            <input type="text" class="form-control" id="date" aria-describedby="validationTooltipUsernamePrepend" disabled>
+                                            <div class="invalid-tooltip">
+                                                Please choose a unique and valid username.
+                                            </div>                                            
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="col-md-6 mb-5">
+                                            <label for="class">Class</label>
+                                            <input type="text" class="form-control" id="class" disabled>
+                                            <div class="invalid-tooltip">
+                                                Please provide a valid city.
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3 mb-5">
+                                            <label for="jml">Jumlah</label>
+                                            <input type="text" class="form-control" id="jml" placeholder="Jumlah" required>
+                                            <div class="invalid-tooltip">
+                                                Please provide a valid state.
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3 mb-5">
+                                            <label for="proof">File</label>
+                                            <input type="file" class="form-control-file" id="proof">
+                                            <div class="invalid-tooltip">
+                                                Please provide a valid zip.
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <img src="" id="output" alt="">
+                                  <button class="btn btn-primary mt-2" type="submit">Submit</button>
+                                </form>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+
+                <!-- CONTENT AREA -->
+
+            </div>
+            <div class="footer-wrapper">
+                <div class="footer-section f-section-1">
+                    <p class="">Copyright © 2020 <a target="_blank" href="https://designreset.com">DesignReset</a>, All rights reserved.</p>
+                </div>
+                <div class="footer-section f-section-2">
+                    <p class="">Coded with <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-heart"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg></p>
+                </div>
+            </div>
+        </div>
+        <!--  END CONTENT AREA  -->
+
+    </div>
+    <!-- END MAIN CONTAINER -->
+
+    <!-- BEGIN GLOBAL MANDATORY SCRIPTS -->
+    <script src="assets/js/libs/jquery-3.1.1.min.js"></script>
+    <script src="bootstrap/js/popper.min.js"></script>
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+    <script src="plugins/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+    <script src="assets/js/app.js"></script>    
+    
+    <script>
+
+        
+
+        function render(){
+            $("#jml").inputmask({mask:"Rp. 999.999.999.999."});
+            let data = localStorage.getItem('user-info')                        
+            let parsed = JSON.parse(data)    
+            let date = new Date()
+            let yy = date.getFullYear()
+            let today = date.getDate()+'/0'+(date.getMonth()+1)+'/'+yy
+            console.log(parsed);
+            document.getElementById('name').value = parsed.username
+            document.getElementById('nik').value = parsed.nik
+            document.getElementById('class').value = parsed.kelas
+            document.getElementById('date').value = today
+        }
+
+        $('#proof').on('change', e => {
+            var reader = new FileReader();
+            reader.onload = function () {
+            var output = document.getElementById("output");
+            output.setAttribute('style', 'weight:50%; height:50%')
+            output.src = reader.result;            
+            };
+            reader.readAsDataURL(e.target.files[0]);            
+        })
+
+        function getB64(){
+            let img = $('#output')[0].src            
+            return img;
+        }
+
+        $('#payment-form').submit(e => {
+            e.preventDefault()
+            let img = getB64()
+            console.log(img);
+            let nama = $('#name').val()
+            let nis = $('#nik').val()
+            let date = $('#date').val()
+            let jml = $('#jml').val()
+            let kelas = $('#class').val()
+            axios
+            .post("http://localhost:8000/api/pay",{
+                'nis' : nis,
+                "nama" : nama,
+                'img' : img,
+                'tanggal' : date,
+                'jumlah' : jml,
+                'kelas' : kelas
+            }).then((response) => {
+                console.log(response);
+            })
+        })
+
+        $(document).ready(function() {
+            App.init();
+            
+        });
+        
+
+    </script>
+    <script src="assets/js/custom.js"></script>
+    <!-- END GLOBAL MANDATORY SCRIPTS -->
+
+    <!-- BEGIN PAGE LEVEL PLUGINS/CUSTOM SCRIPTS -->
+    <script src="plugins/input-mask/jquery.inputmask.bundle.min.js"></script>
+    <script src="plugins/input-mask/input-mask.js"></script>
+
+    <!-- BEGIN PAGE LEVEL PLUGINS/CUSTOM SCRIPTS -->
+</body>
+</html>
