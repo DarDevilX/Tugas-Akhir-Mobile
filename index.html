@@ -83,6 +83,20 @@
             let parsed = JSON.parse(res)
             console.log(parsed);
             if(parsed.loggedin == true){
+                if(parsed.role == 'master'){
+                    localStorage.setItem(
+                    'user-info',
+                    JSON.stringify({
+                        'username' : parsed.name,
+                        'role' : parsed.role
+                    }));
+                    window.location = "admin";
+                }else if(parsed.role == 'petugas'){
+
+                }else if(parsed.role == 'siswa'){
+
+                }
+                
                 switch (parsed.role) {
                     case 'master':
                     localStorage.setItem(
@@ -95,7 +109,6 @@
                         break;
 
                     case 'petugas':
-                    let data = 
                     localStorage.setItem(
                     'user-info',
                     JSON.stringify({
@@ -103,6 +116,7 @@
                         'role' : parsed.role
                     }));
                     window.location = "petugas";
+                        break;
 
                     case 'siswa':
                     localStorage.setItem(
@@ -114,6 +128,7 @@
                         'role' : parsed.role
                     }));
                     window.location = "siswa";
+                        break;
                 
                     default:
                         break;
