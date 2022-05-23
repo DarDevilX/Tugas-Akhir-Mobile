@@ -10,6 +10,7 @@
     <link href="https://fonts.googleapis.com/css?family=Quicksand:400,500,600,700&display=swap" rel="stylesheet">
     <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <link href="assets/css/plugins.css" rel="stylesheet" type="text/css" />
+    <link href="assets/css/components/custom-counter.css" rel="stylesheet" type="text/css">
     <!-- END GLOBAL MANDATORY STYLES -->
     
     <!-- BEGIN PAGE LEVEL PLUGINS/CUSTOM STYLES -->
@@ -143,32 +144,61 @@
         <!--  END TOPBAR  -->
         
         <!--  BEGIN CONTENT AREA  -->
-        <div id="content" class="main-content">
-            <div class="layout-px-spacing">
-
+        <div id="content" class="main-content" >
+            <div class="layout-spacing">
 
                 <!-- CONTENT AREA -->
                 
 
-                <div class="row layout-top-spacing">
-                    
-                    <div class="col-xl-12 col-lg-12 col-md-12 col-12 layout-spacing">
-                        <div class="widget-content-area br-4">
-                            <div class="widget-one">
+                <div id="counterIcon" class="col-lg-12 layout-spacing mt-4" >
+                    <div class="statbox widget box box-shadow">
+                        
+                        <div class="widget-content widget-content-area text-center " style="background-color:#E0FFFF ;">
 
-                                <h6>Dashboard</h6>
+                            <div class="icon--counter-container" >
+                                
+                                <div class="counter-container">
 
-                                <p class="">With CORK starter kit, you can begin your work without any hassle. The starter page is highly optimized which gives you freedom to start with minimal code and add only the desired components and plugins required for your project.</p>
+                                    <div class="counter-content">
+                                        <h1 class="ico-counter1 ico-counter">10</h1>
+                                    </div>
+
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather counter-ico feather-user"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+
+                                    <p class="ico-counter-text">Transaksi</p>
+                                </div>
+
+                                <div class="counter-container">
+
+                                    <div class="counter-content">
+                                        <h1 class="ico-counter1 ico-counter">10</h1>
+                                    </div>
+
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather counter-ico feather-user"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+
+                                    <p class="ico-counter-text">Siswa</p>
+                                </div>
+
+                                <div class="counter-container">
+
+                                    <div class="counter-content">
+                                        <h1 class="ico-counter1 ico-counter">10</h1>
+                                    </div>
+
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather counter-ico feather-user"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+
+                                    <p class="ico-counter-text">Petugas</p>
+                                </div>
 
                             </div>
                         </div>
                     </div>
-
-                </div>
+                
+        
+    
 
 
                 <!-- CONTENT AREA -->
-
             </div>
             <div class="footer-wrapper">
                 <div class="footer-section f-section-1">
@@ -190,7 +220,15 @@
     <script src="bootstrap/js/bootstrap.min.js"></script>
     <script src="plugins/perfect-scrollbar/perfect-scrollbar.min.js"></script>
     <script src="assets/js/app.js"></script>
+
+    <!-- BEGIN PAGE LEVEL SCRIPTS -->
+    <script src="assets/js/scrollspyNav.js"></script>
+    <script src="plugins/counter/jquery.countTo.js"></script>
+    <!-- END PAGE LEVEL SCRIPTS -->
     
+    <!--  BEGIN CUSTOM SCRIPTS FILE 
+    <script src="assets/js/components/custom-counter.js"></script>
+      END CUSTOM SCRIPTS FILE  -->
     <script>
         $(document).ready(function() {
             App.init();
