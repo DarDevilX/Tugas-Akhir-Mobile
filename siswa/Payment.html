@@ -11,6 +11,7 @@
     <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <link href="assets/css/plugins.css" rel="stylesheet" type="text/css" />
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="plugins/table/datatable/dt-global_style.css">
     <!-- END GLOBAL MANDATORY STYLES -->
     
     <!-- BEGIN PAGE LEVEL PLUGINS/CUSTOM STYLES -->
@@ -94,7 +95,7 @@
                         <a href="index.html" aria-expanded="false" class="dropdown-toggle autodroprown">
                             <div class="">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-home"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
-                                <span>Dashboard</span>
+                                <span>Beranda</span>
                             </div>
                         </a>
                     </li>
@@ -104,7 +105,7 @@
                         <a href="Payment.html" aria-expanded="false" class="dropdown-toggle autodroprown">
                             <div class="">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus-circle"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="16"></line><line x1="8" y1="12" x2="16" y2="12"></line></svg>
-                                <span>Payment</span>
+                                <span>Pembayaran</span>
                             </div>                            
                         </a>                       
                     </li>
@@ -113,7 +114,7 @@
                         <a href="History.html" aria-expanded="true" class="dropdown-toggle autodroprown">
                             <div class="">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-box"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
-                                <span>History</span>
+                                <span>Riwayat</span>
                             </div>
                         </a>                        
                     </li>
@@ -126,37 +127,37 @@
         <div id="content" class="main-content">
             <div class="layout-px-spacing">
 
-
-                <!-- CONTENT AREA -->
+                <div class="main-container sidebar-closed sbar-open" id="container">
                 
-
+                <!-- CONTENT AREA -->
                 <div class="row layout-top-spacing">
                     
                     <div class="col-xl-12 col-lg-12 col-md-12 col-12 layout-spacing">
                         <div class="widget-content-area br-4">
                             <div class="widget-one">
 
-                                <h6 class="mb-3">Payment</h6>
+                                <h6>Dashboard</h6>
 
+                                
                                 <form class="needs-validation" id="payment-form" novalidate action="javascript:void(0);">
                                     <div class="form-row">
                                         <div class="col-md-4 mb-5">
-                                            <label for="name">Name</label>
-                                            <input type="text" class="form-control" id="name" disabled>
+                                            <label for="name">Nama</label>
+                                            <input type="text" class="form-control" id="name">
                                             <div class="valid-tooltip">
                                                 Looks good!
                                             </div>
                                         </div>
                                         <div class="col-md-4 mb-5">
-                                            <label for="nik">Student NIS</label>
-                                            <input type="text" class="form-control" id="nik" value="Park" disabled>
+                                            <label for="nik">NIS Siswa</label>
+                                            <input type="text" class="form-control" id="nik" value="Park">
                                             <div class="valid-tooltip">
                                                 Looks good!
                                             </div>
                                         </div>
                                         <div class="col-md-4 mb-5">
-                                            <label for="Date">Date</label>                                                     
-                                            <input type="text" class="form-control" id="date" aria-describedby="validationTooltipUsernamePrepend" disabled>
+                                            <label for="Date">Tanggal</label>                                                     
+                                            <input type="text" class="form-control" id="date" aria-describedby="validationTooltipUsernamePrepend">
                                             <div class="invalid-tooltip">
                                                 Please choose a unique and valid username.
                                             </div>                                            
@@ -164,8 +165,8 @@
                                     </div>
                                     <div class="form-row">
                                         <div class="col-md-6 mb-5">
-                                            <label for="class">Class</label>
-                                            <input type="text" class="form-control" id="class" disabled>
+                                            <label for="class">Kelas</label>
+                                            <input type="text" class="form-control" id="class">
                                             <div class="invalid-tooltip">
                                                 Please provide a valid city.
                                             </div>
@@ -186,16 +187,14 @@
                                         </div>
                                     </div>
                                     <img src="" id="output" alt="">
-                                  <button class="btn btn-primary mt-2" type="submit">Submit</button>
+                                  <button class="btn btn-primary mt-2" type="submit">Simpan</button>
                                 </form>
-
                             </div>
                         </div>
                     </div>
+                    </div>
 
                 </div>
-
-
                 <!-- CONTENT AREA -->
 
             </div>
