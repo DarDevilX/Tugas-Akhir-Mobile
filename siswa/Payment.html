@@ -11,6 +11,7 @@
     <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <link href="assets/css/plugins.css" rel="stylesheet" type="text/css" />
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="plugins/table/datatable/dt-global_style.css">
     <!-- END GLOBAL MANDATORY STYLES -->
     
     <!-- BEGIN PAGE LEVEL PLUGINS/CUSTOM STYLES -->
@@ -135,10 +136,9 @@
         <div id="content" class="main-content">
             <div class="layout-px-spacing">
 
-
-                <!-- CONTENT AREA -->
+                <div class="main-container sidebar-closed sbar-open" id="container">
                 
-
+                <!-- CONTENT AREA -->
                 <div class="row layout-top-spacing">
                     
                     <div class="col-xl-12 col-lg-12 col-md-12 col-12 layout-spacing">
@@ -147,6 +147,7 @@
 
                                 <h6 class="mb-3">Payment</h6>
 
+                                
                                 <form class="needs-validation" id="payment-form" novalidate action="javascript:void(0);">
                                     <div class="form-row">
                                         <div class="col-md-4 mb-5">
@@ -194,17 +195,15 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <img src="" id="output" alt="">
+                                    <img src="blob:http://localhost/90703169-8fe7-4eee-8004-29860b915f5d" id="output" alt="">
                                   <button class="btn btn-primary mt-2" type="submit">Submit</button>
                                 </form>
-
                             </div>
                         </div>
                     </div>
+                    </div>
 
                 </div>
-
-
                 <!-- CONTENT AREA -->
 
             </div>
@@ -247,25 +246,47 @@
             document.getElementById('date').value = today
         }
 
+        const b64toBlob = (b64Data, contentType='', sliceSize=512) => {
+        const byteCharacters = atob(b64Data);
+        const byteArrays = [];
+
+        for (let offset = 0; offset < byteCharacters.length; offset += sliceSize) {
+            const slice = byteCharacters.slice(offset, offset + sliceSize);
+
+            const byteNumbers = new Array(slice.length);
+            for (let i = 0; i < slice.length; i++) {
+            byteNumbers[i] = slice.charCodeAt(i);
+            }
+
+            const byteArray = new Uint8Array(byteNumbers);
+            byteArrays.push(byteArray);
+        }
+
+        const blob = new Blob(byteArrays, {type: contentType});
+        return blob;
+        }
+
+        let data = undefined
         $('#proof').on('change', e => {
             var reader = new FileReader();
-            reader.onload = function () {
+            reader.onload = function () {  
+            data = reader.result      
+            let img = data.split(',')[1]
+            let imgType = data.split(',')[0].substr(5, 9)            
+            let blob = b64toBlob(img, imgType)
+            let blobUrl = URL.createObjectURL(blob)     
             var output = document.getElementById("output");
-            output.setAttribute('style', 'weight:50%; height:50%')
-            output.src = reader.result;            
+            output.setAttribute('style', 'width:50%; height:50%')
+            output.src = blobUrl;          
             };
             reader.readAsDataURL(e.target.files[0]);            
         })
 
-        function getB64(){
-            let img = $('#output')[0].src            
-            return img;
-        }
+        
 
         $('#payment-form').submit(e => {
-            e.preventDefault()
-            let img = getB64()
-            console.log(img);
+            e.preventDefault()            
+            let img = document.getElementById('output').src
             let nama = $('#name').val()
             let nis = $('#nik').val()
             let date = $('#date').val()
