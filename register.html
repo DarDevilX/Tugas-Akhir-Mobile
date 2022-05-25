@@ -14,6 +14,7 @@
     <!-- END GLOBAL MANDATORY STYLES -->
     <link rel="stylesheet" type="text/css" href="admin/assets/css/forms/theme-checkbox-radio.css">
     <link rel="stylesheet" type="text/css" href="admin/assets/css/forms/switches.css">
+    <link rel="stylesheet" type="text/css" href="admin/plugins/select2/select2.min.css">
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
 </head>
@@ -27,9 +28,14 @@
                     <div class="form-content">
 
                         <h1 class="">Register</h1>
-                        <p class="signup-link register">Already have an account? <a href="auth_login_boxed.html">Log in</a></p>
+                        <p class="signup-link register">Already have an account? <a href="/">Log in</a></p>
                         <form class="text-left" id="register-form">
                             <div class="form">
+                                <div id="username-field" class="field-wrapper input">
+                                    <label for="name">Name</label>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-user"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><ciramee cx="12" cy="7" r="4"></ciramee></svg>
+                                    <input id="name" name="name" type="text" class="form-control" placeholder="Name">
+                                </div>
 
                                 <div id="username-field" class="field-wrapper input">
                                     <label for="username">NIS</label>
@@ -47,6 +53,19 @@
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" id="toggle-password" class="feather feather-eye"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
                                 </div>
 
+                                <div class="field-wrapper">
+                                    <label for="jurusan">Jurusan Masseh</label>
+                                    <select class="form-control  basic" name="jurusan" id="jurusan">
+                                        <option selected="selected">Rekayasa Perangkat Lunak</option>
+                                        <option>Multimedia</option>
+                                        <option>Broadcasting</option>
+                                        <option>Mekatronika</option>
+                                        <option>Animasi</option>
+                                        <option>Audio Video</option>
+                                        <option>Elektronika Industri</option>
+                                    </select>
+                                </div>
+
                                 <div class="d-sm-flex justify-content-between">
                                     <div class="field-wrapper">
                                         <button type="submit" class="btn btn-primary" value="">Submit</button>
@@ -54,7 +73,6 @@
                                 </div>
                             </div>
                         </form>
-
                     </div>                    
                 </div>
             </div>
@@ -66,14 +84,38 @@
     <script src="admin/assets/js/libs/jquery-3.1.1.min.js"></script>
     <script src="admin/bootstrap/js/popper.min.js"></script>
     <script src="admin/bootstrap/js/bootstrap.min.js"></script>
+    <script src="admin/plugins/select2/select2.min.js"></script>
+    <script src="admin/plugins/select2/custom-select2.js"></script>
     
     <!-- END GLOBAL MANDATORY SCRIPTS -->
     <script src="admin/assets/js/authentication/form-2.js"></script>
     <script>
-        axios
-        .post('http://locahost:8000/api/register',{
-
+        $('#register-form').submit( function (e) {
+            e.preventDefault()          
+            let nama = $('#name').val()
+            let username = $('#username').val()
+            let password = $('#password').val()
+            let jurusan = $("#jurusan option:selected").text();
+            console.log(username,password, jurusan);
+            axios
+            .post('http://locahost:8000/api/register',{
+                'nis' : username,
+                'password' : password,
+                'nama' : nama,
+                'jurusan' : jurusan
+            }).then((result) => {
+                Swal.fire({
+                    title: "Error!",
+                    html: "Registrasi sukses!",
+                    type: 'error'
+                })
+            }).catch((err) => {
+                console.log(err);
+            });
         })
+        var ss = $(".basic").select2({
+            tags: true,
+        }); 
     </script>
 
 </body>

@@ -10,6 +10,7 @@
     <link href="https://fonts.googleapis.com/css?family=Quicksand:400,500,600,700&display=swap" rel="stylesheet">
     <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <link href="assets/css/plugins.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="plugins/bootstrap-select/bootstrap-select.min.css">
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <link rel="stylesheet" type="text/css" href="plugins/table/datatable/dt-global_style.css">
     <!-- END GLOBAL MANDATORY STYLES -->
@@ -179,13 +180,14 @@
                                             <div class="invalid-tooltip">
                                                 Please provide a valid city.
                                             </div>
-                                        </div>
-                                        <div class="col-md-3 mb-5">
-                                            <label for="jml">Jumlah</label>
-                                            <input type="text" class="form-control" id="jml" placeholder="Jumlah" required>
-                                            <div class="invalid-tooltip">
-                                                Please provide a valid state.
-                                            </div>
+                                        </div>                                       
+                                        <div class="col-md-2 mb-5" style="margin-right: 20px;width: 20px ;">
+                                            <label for="jml" >Bayar</label>
+                                            <select name="jml" class="selectpicker" title="Pilih Jumlah" id="jml" >
+                                                <option value="=100">Rp 100.000</option>
+                                                <option value="=150">Rp 150.000</option>
+                                                <option value=">200">Rp 200.000</option>
+                                            </select>
                                         </div>
                                         <div class="col-md-3 mb-5">
                                             <label for="proof">File</label>
@@ -196,7 +198,7 @@
                                         </div>
                                     </div>
 
-                                    <img src="" id="output" alt="">
+                                    <img  id="output" >
 
                                   <button class="btn btn-primary mt-2" type="submit">Submit</button>
                                 </form>
@@ -227,7 +229,9 @@
     <script src="assets/js/libs/jquery-3.1.1.min.js"></script>
     <script src="bootstrap/js/popper.min.js"></script>
     <script src="bootstrap/js/bootstrap.min.js"></script>
+    <script src="plugins/bootstrap-select/bootstrap-select.min.js"></script>
     <script src="plugins/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+    <script src="plugins/sweetalerts/sweetalert2.min.js"></script>
     <script src="assets/js/app.js"></script>    
     
     <script>
@@ -248,38 +252,14 @@
             document.getElementById('date').value = today
         }
 
-        const b64toBlob = (b64Data, contentType='', sliceSize=512) => {
-        const byteCharacters = atob(b64Data);
-        const byteArrays = [];
-
-        for (let offset = 0; offset < byteCharacters.length; offset += sliceSize) {
-            const slice = byteCharacters.slice(offset, offset + sliceSize);
-
-            const byteNumbers = new Array(slice.length);
-            for (let i = 0; i < slice.length; i++) {
-            byteNumbers[i] = slice.charCodeAt(i);
-            }
-
-            const byteArray = new Uint8Array(byteNumbers);
-            byteArrays.push(byteArray);
-        }
-
-        const blob = new Blob(byteArrays, {type: contentType});
-        return blob;
-        }
-
         let data = undefined
         $('#proof').on('change', e => {
             var reader = new FileReader();
             reader.onload = function () {  
-            data = reader.result      
-            let img = data.split(',')[1]
-            let imgType = data.split(',')[0].substr(5, 9)            
-            let blob = b64toBlob(img, imgType)
-            let blobUrl = URL.createObjectURL(blob)     
-            var output = document.getElementById("output");
-            output.setAttribute('style', 'width:50%; height:50%')
-            output.src = blobUrl;          
+            data = reader.result                   
+            var output = $('#output');
+            output.attr('style', 'width: 20%; height: 20%;')
+            output.attr('src', data)     
             };
             reader.readAsDataURL(e.target.files[0]);            
         })
@@ -292,7 +272,8 @@
             let nama = $('#name').val()
             let nis = $('#nik').val()
             let date = $('#date').val()
-            let jml = $('#jml').val()
+            let jml = $('#jml option:selected').text()
+
             let kelas = $('#class').val()
             axios
             .post("http://localhost:8000/api/pay",{
@@ -303,7 +284,18 @@
                 'jumlah' : jml,
                 'kelas' : kelas
             }).then((response) => {
-                console.log(response);
+                Swal.fire({
+                    title: "Sukses!",
+                    html: "Pembayaran sukses, Mohon tunggu konfirmasi petugas",
+                    type: 'success'
+                })
+
+            }).catch((response) => {
+                Swal.fire({
+                    title: "Error!",
+                    html: "Error",
+                    type: 'error'
+                })
             })
         })
 
