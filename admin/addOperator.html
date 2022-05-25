@@ -25,11 +25,10 @@
             min-height: calc(100vh - 184px)!important;
         }
 
+
     </style>
 
     <!-- END PAGE LEVEL PLUGINS/CUSTOM STYLES -->
-
-    
 
 
     
@@ -43,7 +42,7 @@
             <a href="javascript:void(0);" class="sidebarCollapse" data-placement="bottom"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></a>
 
             <div class="nav-logo align-self-center">
-                <a class="navbar-brand" href="index.html"><img alt="logo" src="assets/img/Logo smk 2.png"> <span class="navbar-brand-name">APLIKASI PEMBAYARAN SPP ONLINE</span></a>
+                <a class="navbar-brand" href="index.html"><img alt="logo" src="assets/img/Logo smk 2.png"> <span class="navbar-brand-name">ADMIN APLIKASI SPP ONLINE</span></a>
             </div>
 
             <ul class="navbar-item flex-row nav-dropdowns ml-auto">
@@ -148,6 +147,8 @@
         <!--  END TOPBAR  -->
         
         <!--  BEGIN CONTENT AREA  -->
+        <br>
+        
         <div id="content" class="main-content">
             <div class="layout-px-spacing">
 
@@ -157,27 +158,42 @@
 
                 <div class="row layout-top-spacing">
                     
-                    <div class="col-xl-12 col-lg-12 col-md-12 col-12 layout-spacing">
-                        <div class="widget-content-area br-4">
-                            <div class="widget-one">
+                    <div id="basic" class="col-lg-12 layout-spacing "  >
+                        <div class="statbox widget box box-shadow">
+                            <div class="widget-header">
+                                <div class="row">
+                                    <div class="col-xxl-12 col-md-12 col-sm-12 col-12 text-center">
+                                        <h4>Tambah Data Petugas</h4>
+                                    </div>                 
+                                </div>
+                            </div>
+                            <div class="widget-content widget-content-area ">
 
-                                <h6>add operator</h6>
-
-                                <p class="">With CORK starter kit, you can begin your work without any hassle. The starter page is highly optimized which gives you freedom to start with minimal code and add only the desired components and plugins required for your project.</p>
+                                <form>
+                                    <div class="form-group mb-4">
+                                        <input type="text" class="form-control" id="lFullName" placeholder=" Masukkan Nama Petugas" required>
+                                    </div>
+                                    <div class="form-group mb-4">
+                                        <input type="text" class="form-control" id="lEmail" placeholder="Masukkan Username Petugas" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="password" class="form-control" id="lPassword" placeholder="Masukkan Password Petugas" required>
+                                    </div>
+                
+                                    <button type="submit" class="btn btn-primary mt-4">Submit</button>
+                                </form>
 
                             </div>
                         </div>
                     </div>
-
                 </div>
-
 
                 <!-- CONTENT AREA -->
 
             </div>
             <div class="footer-wrapper">
                 <div class="footer-section f-section-1">
-                    <p class="">Copyright © 2020 <a target="_blank" href="https://designreset.com">DesignReset</a>, All rights reserved.</p>
+                    <p class="">Copyright © 2022 Aplikasi Pembayaran SPP Online</p>
                 </div>
                 <div class="footer-section f-section-2">
                     <p class="">Coded with <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-heart"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg></p>
