@@ -13,6 +13,7 @@
     <link rel="stylesheet" type="text/css" href="plugins/table/datatable/datatables.css">
     <link rel="stylesheet" type="text/css" href="plugins/table/datatable/dt-global_style.css">
     <!-- END GLOBAL MANDATORY STYLES -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <link rel="stylesheet" type="text/css" href="plugins/table/datatable/datatables.css">
     <link rel="stylesheet" type="text/css" href="plugins/table/datatable/dt-global_style.css">
     
@@ -161,38 +162,40 @@
                                                         <tr>
                                                             <th>NIS</th>
                                                             <th>Nama</th>
-                                                            <th>Jurusan</th>
-                                                            <th>Kelas</th>
+                                                            <th>Jurusan</th>                                                            
                                                             <th>Tanggal</th>
                                                             <th>Jumlah</th>
                                                             <th class="no-content"></th>
                                                         </tr>
                                                     </thead>
-                                                    <tbody>
-                                                        <tr>
-                                                            <td>Tiger Nixon</td>
-                                                            <td>System Architect</td>
-                                                            <td>Edinburgh</td>
-                                                            <td>61</td>
-                                                            <td>2011/04/25</td>
-                                                            <td>$320,800</td>
-                                                            <td><button class="btn btn-primary mt-2" type="submit">Deskripsi</button></td>
-                                                            
-                                                        </tr>                                                        
+                                                    <tbody>                                                                                                            
                                                     </tbody>                                                                                                        
-                                                </table>
-                                                
+                                                </table>                                                
                                             </div>
-                                        </div>
-        
+                                        </div>        
                                     </div>
                                 </div>
                             </div>
-        
                         </div>
-
-                        
-                
+                        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                          <svg> ... </svg>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p class="modal-text">Mauris mi tellus, pharetra vel mattis sed, tempus ultrices eros. Phasellus egestas sit amet velit sed luctus. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Suspendisse potenti. Vivamus ultrices sed urna ac pulvinar. Ut sit amet ullamcorper mi. </p>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button class="btn" data-dismiss="modal"><i class="flaticon-cancel-12"></i> Discard</button>
+                                        <button type="button" class="btn btn-primary">Save</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                 </div>
             </div>
             <!--  END CONTENT AREA  -->
@@ -212,14 +215,13 @@
                         $(document).ready(function() {
                             App.init();
                         });
-                    </script>
-                    <script src="assets/js/custom.js"></script>
-                    <!-- END GLOBAL MANDATORY SCRIPTS -->
-                
-                    <!-- BEGIN PAGE LEVEL SCRIPTS -->
-                    <script src="plugins/table/datatable/datatables.js"></script>
-                    <script>
-                        $('#zero-config').DataTable({
+
+                        axios.post('http://localhost:8000/api/trShow').
+                        then((result) => {                            
+                            let res = result.data  
+                            console.log(res);                                                    
+                            $.fn.dataTable.ext.errMode = 'none';
+                            let table = $('#zero-config').DataTable({
                             "oLanguage": {
                                 "oPaginate": { "sPrevious": '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>', "sNext": '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>' },
                                 "sInfo": "Showing page _PAGE_ of _PAGES_",
@@ -240,8 +242,27 @@
                                 targets: [ 4 ],
                                 orderData: [ 4, 0 ]
                             } ]
+                        })
+                        res.forEach(elem => {
+                            table.row.add([    
+                            elem.nis,
+                            elem.nama,
+                            elem.kelas,
+                            elem.tanggal,
+                            elem.jml_byr,
+                            `<button type="button" class="btn btn-primary mb-2 mr-2" data-toggle="modal" data-target="#exampleModal">Deskripsi</button>`
+                        ]).draw();                                 
+                        });                              
+                        }).catch((err) => {
+                            console.log(err);
                         });
+
                     </script>
+                    <script src="assets/js/custom.js"></script>
+                    <!-- END GLOBAL MANDATORY SCRIPTS -->
+                
+                    <!-- BEGIN PAGE LEVEL SCRIPTS -->
+                    <script src="plugins/table/datatable/datatables.js"></script>                    
                     <!-- END PAGE LEVEL SCRIPTS -->
                 
                 </body>
@@ -275,12 +296,12 @@
     <script>
         $(document).ready(function() {
             App.init();
-            function logout(){
-                localStorage.removeItem('user-info')
-                localStorage.clear()
-                window.location.href = "http://localhost/tugas-akhir/Web/login.html"
-            }
         });
+        
+        function logout(){
+            localStorage.removeItem('user-info')
+            localStorage.clear()
+        }
     </script>
     <script src="assets/js/custom.js"></script>
     <!-- END GLOBAL MANDATORY SCRIPTS -->
